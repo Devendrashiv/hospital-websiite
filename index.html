@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareWell Hospital | Doctors & Appointments</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --blue: #1266d6; --navy: #12345a; --teal: #16a6a1; --light: #f4f9ff; --text: #24364b; }
+    body { font-family: Arial, Helvetica, sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+    header { background: #fff; border-bottom: 1px solid #e5eef7; position: sticky; top: 0; z-index: 10; }
+    .nav { max-width: 1100px; margin: auto; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .brand { color: var(--navy); font-weight: 800; font-size: 1.35rem; text-decoration: none; }
+    .brand span { color: var(--teal); }
+    nav { display: flex; gap: 22px; align-items: center; }
+    nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: .95rem; }
+    nav a:hover { color: var(--blue); }
+    .hero { background: linear-gradient(120deg, #eaf5ff, #f7fcff 58%, #e7f9f7); padding: 76px 22px 70px; }
+    .hero-inner { max-width: 1100px; margin: auto; display: grid; grid-template-columns: 1.25fr .75fr; gap: 36px; align-items: center; }
+    .eyebrow { color: var(--teal); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: .82rem; }
+    h1 { color: var(--navy); font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.12; margin: 12px 0 18px; }
+    .hero p { max-width: 590px; font-size: 1.08rem; color: #53677e; }
+    .hero-card { background: #fff; border-radius: 22px; padding: 28px; box-shadow: 0 15px 40px rgba(27, 84, 139, .1); border: 1px solid #e5f0fb; }
+    .hero-card .cross { font-size: 3.3rem; text-align: center; color: var(--teal); margin-bottom: 8px; }
+    .hero-card h2 { text-align: center; color: var(--navy); font-size: 1.25rem; margin-bottom: 8px; }
+    .hero-card p { text-align: center; font-size: .95rem; }
+    .btn { display: inline-block; margin-top: 24px; background: var(--blue); color: white; padding: 12px 20px; border-radius: 9px; text-decoration: none; font-weight: 700; border: 0; cursor: pointer; }
+    .btn:hover { background: #0d54b3; }
+    section { padding: 62px 22px; }
+    .container { max-width: 1100px; margin: auto; }
+    .section-head { text-align: center; margin-bottom: 34px; }
+    .section-head h2 { color: var(--navy); font-size: 2rem; margin: 7px 0; }
+    .section-head p { color: #64778b; }
+    .doctors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .doctor { background: #fff; border: 1px solid #e4edf5; border-radius: 16px; padding: 23px; box-shadow: 0 8px 24px rgba(20, 65, 112, .05); }
+    .avatar { width: 62px; height: 62px; border-radius: 15px; display: grid; place-items: center; background: #e8f4ff; color: var(--blue); font-size: 1.65rem; margin-bottom: 14px; }
+    .doctor h3 { color: var(--navy); margin-bottom: 3px; }
+    .specialty { color: var(--teal); font-weight: 700; font-size: .92rem; }
+    .timing { margin-top: 12px; padding-top: 12px; border-top: 1px solid #edf2f7; font-size: .92rem; color: #52677c; }
+    .timing strong { color: var(--navy); }
+    #appointment { background: var(--light); }
+    form { max-width: 600px; margin: auto; background: white; padding: 28px; border-radius: 18px; box-shadow: 0 10px 30px rgba(20, 65, 112, .06); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; color: var(--navy); }
+    input, select, textarea { width: 100%; border: 1px solid #d8e5f0; border-radius: 8px; padding: 11px 12px; font: inherit; color: var(--text); background: white; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid #b9dcff; border-color: var(--blue); }
+    .field { margin-bottom: 16px; }
+    .full { grid-column: 1 / -1; }
+    form .btn { width: 100%; margin-top: 4px; }
+    #message { margin-top: 14px; color: #11805c; text-align: center; font-weight: 700; }
+    footer { background: var(--navy); color: #d9e9f7; padding: 28px 22px; text-align: center; }
+    footer strong { color: white; }
+    @media (max-width: 760px) { .hero-inner { grid-template-columns: 1fr; } .doctors { grid-template-columns: 1fr 1fr; } nav { gap: 12px; } }
+    @media (max-width: 520px) { .nav { flex-direction: column; } nav { flex-wrap: wrap; justify-content: center; } .doctors, .form-grid { grid-template-columns: 1fr; } .full { grid-column: auto; } section { padding: 46px 16px; } .hero { padding: 52px 16px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#home">Care<span>Well</span> Hospital</a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#doctors">Our Doctors</a>
+        <a href="#appointment">Appointments</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Compassion • Care • Cure</div>
+          <h1>Your health deserves the best care.</h1>
+          <p>Meet our experienced doctors, explore their specializations, and find convenient consultation timings at CareWell Hospital.</p>
+          <a class="btn" href="#doctors">Meet Our Doctors</a>
+        </div>
+        <div class="hero-card">
+          <div class="cross">✚</div>
+          <h2>Care for Every Patient</h2>
+          <p>Quality healthcare, experienced specialists, and patient-first service—all in one place.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="doctors">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Our medical team</div>
+          <h2>Meet Our Doctors</h2>
+          <p>Choose a specialist and check their available consultation hours.</p>
+        </div>
+        <div class="doctors">
+          <article class="doctor">
+            <div class="avatar">👨‍⚕️</div>
+            <h3>Dr. Arjun Rao</h3>
+            <div class="specialty">Cardiologist</div>
+            <div class="timing"><strong>Available:</strong><br>Mon – Sat · 9:00 AM – 1:00 PM</div>
+          </article>
+          <article class="doctor">
+            <div class="avatar">👩‍⚕️</div>
+            <h3>Dr. Priya Sharma</h3>
+            <div class="specialty">Dermatologist</div>
+            <div class="timing"><strong>Available:</strong><br>Mon – Fri · 10:00 AM – 2:00 PM</div>
+          </article>
+          <article class="doctor">
+            <div class="avatar">👨‍⚕️</div>
+            <h3>Dr. Karthik Reddy</h3>
+            <div class="specialty">Orthopedic Specialist</div>
+            <div class="timing"><strong>Available:</strong><br>Tue – Sat · 4:00 PM – 8:00 PM</div>
+          </article>
+          <article class="doctor">
+            <div class="avatar">👩‍⚕️</div>
+            <h3>Dr. Sneha Iyer</h3>
+            <div class="specialty">Pediatrician</div>
+            <div class="timing"><strong>Available:</strong><br>Mon – Sat · 9:30 AM – 12:30 PM</div>
+          </article>
+          <article class="doctor">
+            <div class="avatar">👨‍⚕️</div>
+            <h3>Dr. Vivek Kumar</h3>
+            <div class="specialty">Neurologist</div>
+            <div class="timing"><strong>Available:</strong><br>Mon, Wed, Fri · 3:00 PM – 6:00 PM</div>
+          </article>
+          <article class="doctor">
+            <div class="avatar">👩‍⚕️</div>
+            <h3>Dr. Ananya Das</h3>
+            <div class="specialty">Gynecologist</div>
+            <div class="timing"><strong>Available:</strong><br>Mon – Sat · 11:00 AM – 3:00 PM</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="appointment">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Book a visit</div>
+          <h2>Request an Appointment</h2>
+          <p>Fill out the form to prepare an appointment request.</p>
+        </div>
+        <form id="appointmentForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="patientName">Patient Name</label>
+              <input id="patientName" name="patientName" type="text" placeholder="Enter your full name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" placeholder="Enter phone number" required />
+            </div>
+            <div class="field">
+              <label for="doctor">Select Doctor</label>
+              <select id="doctor" name="doctor" required>
+                <option value="">Choose a doctor</option>
+                <option>Dr. Arjun Rao — Cardiologist</option>
+                <option>Dr. Priya Sharma — Dermatologist</option>
+                <option>Dr. Karthik Reddy — Orthopedic Specialist</option>
+                <option>Dr. Sneha Iyer — Pediatrician</option>
+                <option>Dr. Vivek Kumar — Neurologist</option>
+                <option>Dr. Ananya Das — Gynecologist</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date">Preferred Date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+            <div class="field full">
+              <label for="notes">Message (optional)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Any additional information..."></textarea>
+            </div>
+          </div>
+          <button class="btn" type="submit">Submit Appointment Request</button>
+          <p id="message" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <p><strong>CareWell Hospital</strong> · Caring for you and your family</p>
+    <p>Sample website for demonstration. Doctor details and timings are fictional.</p>
+  </footer>
+  <script>
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('message').textContent = 'Your request has been prepared! This demo form does not send data to the hospital.';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
